@@ -1,0 +1,81 @@
+[
+    {
+      "id": "life.start",
+      "title": "A New Day",
+      "text": "You wake up determined to make better choices.",
+      "tags": ["daily"],
+      "weight": 1,
+      "choices": [
+        { "id": "go_jog", "text": "Go for a morning jog", "effects": [
+          { "kind": "deltaStat", "stat": "health", "delta": 3 },
+          { "kind": "deltaStat", "stat": "happiness", "delta": 1 }
+        ]},
+        { "id": "scroll_phone", "text": "Scroll your phone in bed", "effects": [
+          { "kind": "deltaStat", "stat": "health", "delta": -1 },
+          { "kind": "deltaStat", "stat": "happiness", "delta": -1 }
+        ]}
+      ]
+    },
+    {
+      "id": "job.offer.entry",
+      "title": "Entry-Level Offer",
+      "text": "A friend refers you to a junior developer role.",
+      "tags": ["career"],
+      "weight": 2,
+      "when": [
+        { "kind": "statAtLeast", "stat": "intellect", "value": 40 },
+        { "kind": "phaseIs", "phase": "adult" },
+        { "kind": "notJob" }
+      ],
+      "cooldownDays": 60,
+      "choices": [
+        { "id": "accept", "text": "Accept the job", "effects": [
+          { "kind": "setJob", "jobId": "junior_dev", "level": 0 },
+          { "kind": "deltaStat", "stat": "reputation", "delta": 2 },
+          { "kind": "deltaStat", "stat": "happiness", "delta": 1 }
+        ]},
+        { "id": "decline", "text": "Decline politely", "effects": [
+          { "kind": "deltaStat", "stat": "reputation", "delta": -1 }
+        ]}
+      ]
+    },
+    {
+      "id": "job.promotion.review",
+      "title": "Performance Review",
+      "text": "Your manager evaluates your recent work.",
+      "tags": ["career"],
+      "weight": 2,
+      "when": [
+        { "kind": "hasJob" },
+        { "kind": "daysWorkedAtLeast", "days": 20 },
+        { "kind": "statAtLeast", "stat": "intellect", "value": 55 }
+      ],
+      "cooldownDays": 45,
+      "choices": [
+        { "id": "ask_raise", "text": "Make your case for a promotion", "effects": [
+          { "kind": "promoteJob", "levels": 1 },
+          { "kind": "deltaStat", "stat": "reputation", "delta": 2 },
+          { "kind": "deltaStat", "stat": "happiness", "delta": 2 }
+        ]},
+        { "id": "play_safe", "text": "Keep working hard, say little", "effects": [
+          { "kind": "deltaStat", "stat": "reputation", "delta": 1 }
+        ]}
+      ]
+    },
+    {
+      "id": "health.clinic.checkup",
+      "title": "Affordable Clinic",
+      "text": "A neighborhood clinic offers discounted checkups.",
+      "tags": ["health"],
+      "weight": 1,
+      "when": [{ "kind": "statAtMost", "stat": "health", "value": 70 }],
+      "choices": [
+        { "id": "visit", "text": "Visit and get checked", "effects": [
+          { "kind": "deltaStat", "stat": "health", "delta": 5 },
+          { "kind": "giveMoney", "amount": -50 }
+        ]},
+        { "id": "skip", "text": "Skip for now" }
+      ]
+    }
+  ]
+  
